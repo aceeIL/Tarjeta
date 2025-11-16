@@ -150,6 +150,7 @@ footer{
 @media (max-width:480px){
   h1{font-size:1.6rem}
   .photo{width:200px;height:200px}
+  footer{margin-top:60px} /* separación extra en móvil */
 }
 
 /* espacio extra entre boton y footer */
@@ -160,7 +161,7 @@ footer{
 <main class="stage">
 <article class="card" role="article" aria-label="Tarjeta de navidad para Cris">
   <div class="left">
-    <div class="sparkle">!Feliz Navidad🩵¡</div>
+    <div class="sparkle">Felices 4 meses preciosa 🩵</div>
     <h1>Para <span style="color:var(--rose)">Cris</span>, con todo mi cariño</h1>
     <div class="subtitle">Un pequeño detalle para recordarte cuánto significas para mí.</div>
     <div class="message">
@@ -171,7 +172,6 @@ footer{
     </div>
     <div class="action">
       <button class="btn btn-rose" id="revealBtn">Abrir sorpresa</button>
-      <button class="btn btn-ghost" id="shareBtn">Compartir</button>
     </div>
     <div class="letter" id="letter">
       <p><em>Cartita: </em></p>
@@ -180,18 +180,16 @@ footer{
   </div>
   <aside class="right">
     <div class="photo" id="photo" aria-hidden="false">
-      <svg width="160" height="160" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 6px 16px rgba(0,0,0,0.45));">
-        <path d="M12 21s-6.716-4.95-9.5-8.214C.96 9.807 2.52 5.5 6 5.5c1.873 0 3.08 1.102 3.98 2.067.9-.965 2.107-2.067 3.98-2.067 3.48 0 5.04 4.307 3.5 7.286C18.716 16.05 12 21 12 21z" fill="white" opacity="0.95"/>
-      </svg>
-      <div class="name">Cris</div>
+     
+      <img src="NOSOTROS.jpg" alt="Cris" style="width:100%; height:100%; object-fit:cover; border-radius:18px; filter: brightness(1.05) contrast(1.05) saturate(1.1);">
     </div>
     <div class="action" style="margin-top:16px">
       <button class="btn btn-rose" id="playBtn">Enviar beso 😘</button>
-      <button class="btn btn-ghost" id="downloadBtn">Descargar</button>
     </div>
   </aside>
   <div class="hearts" id="hearts"></div>
-  <footer>Diseñado especialmente para ti — ¡feliz San Valentín!</footer>
+  <br><br>
+  <footer>Diseñado especialmente para ti — ¡Te amo🩵!</footer>
 </article>
 </main>
 <script>
@@ -231,28 +229,15 @@ revealBtn.addEventListener('click', ()=>{
   }
 })
 
-// simple share
-const shareBtn = document.getElementById('shareBtn');
-shareBtn.addEventListener('click', async ()=>{
-  const payload = {
-    title: 'Para Cris — San Valentín',
-    text: 'Una dedicatoria especial para Cris ❤️',
-    url: location.href
-  };
-  if(navigator.share){
-    try{ await navigator.share(payload); }catch(e){ alert('Compartir cancelado.'); }
-  } else {
-    prompt('Copia este enlace para compartir:', location.href);
-  }
-})
-
 // play a tiny kiss animation
 const playBtn = document.getElementById('playBtn');
 playBtn.addEventListener('click', ()=>{
   const el = document.createElement('div');
   el.style.position='fixed';el.style.left='50%';el.style.top='50%';
   el.style.transform='translate(-50%,-50%)';
-  el.style.fontSize='3rem';el.style.zIndex=9999;el.style.pointerEvents='none';
+  el.style.fontSize='3rem';
+  el.style.zIndex=9999;
+  el.style.pointerEvents='none';
   el.textContent='💋';
   document.body.appendChild(el);
   el.animate([{opacity:0,transform:'translate(-50%,-40%) scale(0.6)'},{opacity:1,transform:'translate(-50%,-70%) scale(1.2)'},{opacity:0,transform:'translate(-50%,-200%) scale(0.6)'}],{duration:1400,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>el.remove();
