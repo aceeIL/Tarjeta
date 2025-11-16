@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>!!Feliz navidad!!</title>
+  <link rel="icon" href="Corazon_Azul.png" type="image/x-icon">
+
+  <style>
+    :root{
+      --bg:#111014;
+      --rose:#ff3366;
+      --light-rose:#ff6f97;
+      --card:#1a1320;
+      --accent:#ffd6e0;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: radial-gradient(1200px 600px at 10% 10%, rgba(255,50,120,0.06), transparent), radial-gradient(900px 400px at 90% 90%, rgba(255,150,180,0.03), transparent), var(--bg); color: #fff;}
+    .stage{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;
+    }
+    .card{
+      width:100%;max-width:980px;background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:28px;box-shadow: 0 10px 30px rgba(0,0,0,0.6);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
+      display:grid;grid-template-columns: 1fr 360px;gap:24px;align-items:stretch;
+    }
+    @media (max-width:900px){.card{grid-template-columns:1fr;max-width:720px;padding:20px}}
+
+    /* Left column */
+    .left{padding:18px}
+    h1{font-size:2.1rem;margin:0 0 8px 0;letter-spacing:0.6px}
+    .subtitle{color:var(--accent);font-size:0.95rem;margin-bottom:16px}
+    .message{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);line-height:1.45}
+    .message p{margin:0 0 12px 0}
+
+    /* Right column */
+    .right{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px}
+    .photo{
+      width:260px;height:260px;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,0.5);position:relative;overflow:hidden;border:6px solid rgba(255,255,255,0.03);
+      transition: 0.35s ease;
+    }
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:18px;
+      filter: brightness(1.05) contrast(1.05) saturate(1.1);
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+    .photo:hover img{
+      transform: scale(1.04);
+      filter: brightness(1.12) contrast(1.1) saturate(1.15);
+    }
+    .photo .name{position:absolute;bottom:12px;left:12px;background:linear-gradient(90deg, rgba(0,0,0,0.25), rgba(255,255,255,0.02));padding:8px 12px;border-radius:10px;font-weight:600}
+    .action{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{appearance:none;border:0;padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer}
+    .btn-rose{background:linear-gradient(90deg,var(--rose),var(--light-rose));color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent)}
+
+    /* Floating hearts */
+    .hearts{pointer-events:none;position:absolute;inset:0;z-index:0}
+    .heart{position:absolute;will-change:transform,opacity;opacity:0;}
+
+    /* Hidden letter */
+    .letter{margin-top:18px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.008));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);display:none}
+
+    footer{position:absolute;left:18px;bottom:12px;font-size:0.82rem;color:rgba(255,255,255,0.5)}
+
+    /* small sugar */
+    .sparkle{position:absolute;right:20px;top:18px;background:var(--glass);padding:8px;border-radius:10px;font-size:0.85rem}
+
+    /* responsive typography */
+    @media (max-width:480px){h1{font-size:1.6rem}.photo{width:200px;height:200px}}
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <article class="card" role="article" aria-label="Tarjeta de San Valentín para Cris">
+      <div class="left">
+        <div class="sparkle">Felices 4 meses 🩵</div>
+        <h1>Para <span style="color:var(--rose)">Cris</span>, con todo mi cariño</h1>
+        <div class="subtitle">Un pequeño detalle para recordarte cuánto significas para mí.</div>
+
+        <div class="message">
+          <p>Hola miniña,</p>
+          <p>Este es tu último regalito de navidad àra ti. he pensado que una cartita puede ser bonita pero y si hago al distinto? </p>
+          <p>Con mucho amor y cariño</p>
+          <p><strong>Tu persona especial 💌</strong></p>
+        </div>
+
+        <div class="action">
+          <button class="btn btn-rose" id="revealBtn">Abrir sorpresa</button>
+          <button class="btn btn-ghost" id="shareBtn">Compartir</button>
+        </div>
+
+        <div class="letter" id="letter">
+          <p><em>Cartita: </em></p>
+          <p>Oli mi vida, en esta carta quiero decirte lo mucho que te amo, por que nunca es suficiente, mi amor por ti es infinito y aunque te diga te amo nunca es suficiente para mi asi que estare toooooda mi vida diciendotelo. Ya tengo muchas ganas de pasar mucho tiempo contigo y ver las luces juntos.Te amo m🐮cho</p>
+        </div>
+
+      </div>
+
+      <aside class="right">
+        <div class="photo" id="photo" aria-hidden="false">
+          <img src="NOSOTROS.jpg" alt="Foto" style="width:100%;height:100%;object-fit:cover;">
+          <div class="name">Para siempre🩵</div>
+        </div>
+
+        <!-- Botón de beso movido debajo de la foto -->
+        <div class="action" style="margin-top:12px; justify-content:center;">
+          <button class="btn btn-rose" id="playBtn">Enviar beso 😘</button>
+        </div>
+      </aside>
+
+      <div class="hearts" id="hearts"></div>
+      <footer>Diseñado especialmente para ti — ¡Feliz Navidad!</footer>
+    </article>
+  </main>
+
+  <script>
+    // Heart generator
+    const heartsContainer = document.getElementById('hearts');
+    function makeHeart(){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      const size = Math.random()*34 + 12;
+      h.style.width = size + 'px';
+      h.style.height = size + 'px';
+      h.style.left = (Math.random()*100) + '%';
+      h.style.top = (Math.random()*30 + 5) + '%';
+      h.style.opacity = 0.9*(Math.random()*0.6+0.4);
+      h.style.transform = 'scale(0) rotate(' + (Math.random()*40-20) + 'deg)';
+      h.innerHTML = '<svg viewBox="0 0 24 24" width="'+size+'" height="'+size+'" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-6.716-4.95-9.5-8.214C.96 9.807 2.52 5.5 6 5.5c1.873 0 3.08 1.102 3.98 2.067.9-.965 2.107-2.067 3.98-2.067 3.48 0 5.04 4.307 3.5 7.286C18.716 16.05 12 21 12 21z" fill="var(--light-rose)"/></svg>';
+      heartsContainer.appendChild(h);
+      const dur = Math.random()*4000+3000;
+      h.animate([
+        { transform: 'translateY(0) scale(0)', opacity: 0 },
+        { transform: 'translateY(-120px) scale(1)', opacity: 1 },
+        { transform: 'translateY(-260px) scale(0.7)', opacity: 0 }
+      ],{duration: dur, easing: 'cubic-bezier(.2,.8,.2,1)'}).onfinish = ()=> h.remove();
+    }
+    setInterval(makeHeart, 600);
+
+    const revealBtn = document.getElementById('revealBtn');
+    const letter = document.getElementById('letter');
+    revealBtn.addEventListener('click', ()=>{
+      if(letter.style.display === 'block'){
+        letter.style.display = 'none'; revealBtn.textContent = 'Abrir sorpresa';
+      } else { letter.style.display = 'block'; revealBtn.textContent = 'Cerrar'; }
+    });
+
+    const shareBtn = document.getElementById('shareBtn');
+    shareBtn.addEventListener('click', async ()=>{
+      const payload = { title: 'Para Cris — San Valentín', text: 'Una dedicatoria especial para Cris ❤️', url: location.href };
+      if(navigator.share){ try{ await navigator.share(payload); }catch(e){ alert('Compartir cancelado.'); } }
+      else { prompt('Copia este enlace para compartir:', location.href); }
+    });
+
+    const playBtn = document.getElementById('playBtn');
+    playBtn.addEventListener('click', ()=>{
+      const el = document.createElement('div');
+      el.style.position='fixed';el.style.left='50%';el.style.top='50%';el.style.transform='translate(-50%,-50%)';el.style.fontSize='3rem';el.style.zIndex=9999;el.style.pointerEvents='none';el.textContent='💋';
+      document.body.appendChild(el);
+      el.animate([{opacity:0,transform:'translate(-50%,-40%) scale(0.6)'},{opacity:1,transform:'translate(-50%,-70%) scale(1.2)'},{opacity:0,transform:'translate(-50%,-200%) scale(0.6)'}],{duration:1400,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>el.remove();
+    });
+
+    revealBtn.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') revealBtn.click(); });
+  </script>
+</body>
+</html>
